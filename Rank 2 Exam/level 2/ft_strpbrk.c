@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alpha_mirror.c                                     :+:      :+:    :+:   */
+/*   ft_strpbrk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 09:38:44 by marvin            #+#    #+#             */
-/*   Updated: 2025/04/16 09:38:44 by marvin           ###   ########.fr       */
+/*   Created: 2025/05/06 10:23:52 by marvin            #+#    #+#             */
+/*   Updated: 2025/05/06 10:23:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-int   main(int ac, char **av)
+char *ft_strpbrk(const char *s1, const char *s2)
 {
-   int   i = 0;
+   int i = 0;
 
-   if (ac == 2)
+   if (!s1 || !s2)
+      return (0);
+   while (s1[i])
    {
-      while(av[1][i])
+      int j = 0;
+      while (s2[j])
       {
-         if (av[1][i] >= 'A' && av[1][i] <= 'Z')
-            av[1][i] = 'Z' - av[1][i] + 'A';
-         if (av[1][i] >= 'a' && av[1][i] <= 'z')
-            av[1][i] = 'z' - av[1][i] + 'a';
-         write (1,  &av[1][i], 1);
-         i++;
+         if (s1[i] == s2[j])
+            return ((char *)s1 + i);
+         j++;
       }
+      i++;
    }
-   write (1, "\n", 1);
+   return (0);
 }

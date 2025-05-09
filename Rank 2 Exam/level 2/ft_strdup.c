@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alpha_mirror.c                                     :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 09:38:44 by marvin            #+#    #+#             */
-/*   Updated: 2025/04/16 09:38:44 by marvin           ###   ########.fr       */
+/*   Created: 2025/05/06 10:19:09 by marvin            #+#    #+#             */
+/*   Updated: 2025/05/06 10:19:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
-int   main(int ac, char **av)
+char *ft_strdup(char *src)
 {
-   int   i = 0;
+   int i = 0;
+   char *des;
 
-   if (ac == 2)
+   while (src[i])
+      i++;
+   des = (char *)malloc(sizeof(char) *i + 1);
+   if (!des)
+      return (0);
+   i = 0;
+   while (src[i])
    {
-      while(av[1][i])
-      {
-         if (av[1][i] >= 'A' && av[1][i] <= 'Z')
-            av[1][i] = 'Z' - av[1][i] + 'A';
-         if (av[1][i] >= 'a' && av[1][i] <= 'z')
-            av[1][i] = 'z' - av[1][i] + 'a';
-         write (1,  &av[1][i], 1);
-         i++;
-      }
+      des[i] = src[i];
+      i++;
    }
-   write (1, "\n", 1);
+   des[i] = '\0';
+   return (des);
 }
+
+

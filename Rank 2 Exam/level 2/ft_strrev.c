@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alpha_mirror.c                                     :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 09:38:44 by marvin            #+#    #+#             */
-/*   Updated: 2025/04/16 09:38:44 by marvin           ###   ########.fr       */
+/*   Created: 2025/05/06 13:16:31 by marvin            #+#    #+#             */
+/*   Updated: 2025/05/06 13:16:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-int   main(int ac, char **av)
+char  *ft_strrev(char *str)
 {
-   int   i = 0;
+   int i = 0;
+   int j = 0;
+   char   temp;
 
-   if (ac == 2)
+   while (str[j])
+      j++;
+   j--;
+   while(i <= j)
    {
-      while(av[1][i])
-      {
-         if (av[1][i] >= 'A' && av[1][i] <= 'Z')
-            av[1][i] = 'Z' - av[1][i] + 'A';
-         if (av[1][i] >= 'a' && av[1][i] <= 'z')
-            av[1][i] = 'z' - av[1][i] + 'a';
-         write (1,  &av[1][i], 1);
-         i++;
-      }
+      temp = str[i];
+      str[i] = str[j];
+      str[j] = temp;
+      i++;
+      j--;
    }
-   write (1, "\n", 1);
+   return (str);
 }

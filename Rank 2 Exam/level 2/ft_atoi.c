@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alpha_mirror.c                                     :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/16 09:38:44 by marvin            #+#    #+#             */
-/*   Updated: 2025/04/16 09:38:44 by marvin           ###   ########.fr       */
+/*   Created: 2025/05/06 09:46:01 by marvin            #+#    #+#             */
+/*   Updated: 2025/05/06 09:46:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-int   main(int ac, char **av)
+int   ft_atoi(const char *str)
 {
-   int   i = 0;
+   int i;
+   int sign;
+   int result;
 
-   if (ac == 2)
+   i = 0;
+   while (str[i] == 32 || str[i] <= 9 && str[i] >= 13)
+      i++;
+   if(str[i] == '+' || str[i] == '-')
    {
-      while(av[1][i])
-      {
-         if (av[1][i] >= 'A' && av[1][i] <= 'Z')
-            av[1][i] = 'Z' - av[1][i] + 'A';
-         if (av[1][i] >= 'a' && av[1][i] <= 'z')
-            av[1][i] = 'z' - av[1][i] + 'a';
-         write (1,  &av[1][i], 1);
-         i++;
-      }
+      if (str[i] == '-')
+         sign = -1;
+      i++;
    }
-   write (1, "\n", 1);
+   while (str[i] && str[i] >= '0' && str[i] <= '9')
+   {
+      result = result * 10 + (str[i] - '0');
+      i++;
+   }
+   return (result * sign);
 }
